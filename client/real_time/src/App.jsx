@@ -1,28 +1,37 @@
-import React from 'react'
-import './App.css'
+import { useState } from "react";
+
+import Login from "./Login";
+import Chat from "./Chat";
+
+import "./App.css";
 
 const App = () => {
-  return (
-    <div className='App'>
-      <div className='container'>
-        <div>
-          <h2 className='join'>Join</h2>
-          <hr/>
-        </div>
-        <div className='inp_container'>
-          <div>
-            <input className='input inp1' type="text" placeholder='JS MASTERY' name='inp1'/>
-          </div>
-          <div>
-            <input className='input inp2' type="text" placeholder="Course" name='inp2' />
-          </div>
-          <div>
-            <button type='submit' className='input inp3' name='sigin'>Sign In</button>
-          </div>
-        </div>
-      </div> 
-    </div>
-  )
-}
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [room, setRoom] = useState("");
 
-export default App
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (!username || !room) return;
+
+    setIsLoggedIn(true);
+  };
+
+  return (
+    <>
+      {isLoggedIn ? (
+        <Chat username={username} room={room} />
+      ) : (
+        <Login 
+          username={username} 
+          room={room} 
+          onSubmit={onSubmit} 
+          setUsername={setUsername}
+          setRoom={setRoom} />
+      )}
+    </>
+  );
+};
+
+export default App;

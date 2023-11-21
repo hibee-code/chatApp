@@ -29,3 +29,6 @@ hr{
   margin-left: auto;
   padding: 5px;
 }
+input:focus{
+  outline: none;
+}
