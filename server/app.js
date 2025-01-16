@@ -8,6 +8,8 @@ const app = express();
 const server = http.createServer(app); // app serves as the req and res handler
 dotenv.config();
 
+//urlencoded
+//json
 app.use(cors());
 
 const io = new Server(server, {
@@ -26,6 +28,11 @@ io.on('connection', (socket) => {
 
 app.get("/", (req,res) => {
     res.send("Hello world")
+})
+
+app.post('/user/message', (req, res) => {
+    //process the data to save it to th database
+    //req.body
 })
 
 const Port = process.env.PORT;
